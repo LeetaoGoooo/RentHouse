@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 将Action的创建交给spring来管理 -->  
+	<constant name="struts.objectFactory" value="spring" />  
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	
+	<package name="com.struts.action" namespace="/" extends="struts-default">
+		    <action name="userAction" class="com.struts.action.UserServiceAction">
+			     <result name="loginSuccess">./index.jsp</result>
+			     <result name="loginFail">./login.jsp</result>
+			     <result name="showPersonalInfo">./person.jsp</result>
+			     <result name="needLogin">./login.jsp</result>
+			     <result name="updateUserInfoSuccess">./person.jsp</result>
+			     <result name="updateUserInfoFail">./person-update.jsp</result>
+			     <result name="RegisterSuccess">./login.jsp</result>
+			     <result name="RegisterFail">./register.jsp</result>
+			     <result name="adminLogin">./adminIndex.jsp</result>
+			     <result name="adminLogoutSuccess">./login.jsp</result>
+			     <result name="getAllUsersByAdminSuccess">./ManagerUser.jsp</result>
+			     <result name="getAllUsersByAdminFail">./ManagerUser.jsp</result>
+			     <result name="getUserInfoSuccess">./ManagerUser.jsp</result>
+			     <result name="delUserSuccess">./ManagerUser.jsp</result>
+			     <result name="delUserFail">./ManagerUser.jsp</result>
+			     <result name="AdminLogoutSuccess">./login.jsp</result>			    
+		    </action>
+		    <action name="questionAction" class="com.struts.action.PostServiceAction">
+		    	<result name="getAllQuestionFail">./ques.jsp</result>
+		    	<result name="getAllQuestionSuccess">./ques.jsp</result>
+		    	<result name="PostsByType">./questionList.jsp</result>
+		    	<result name="SearchQueByIdFail">./ques.jsp</result>
+		    	<result name="SearchQueByIdSuccess">./questionDetails.jsp</result>
+		    	<result name="AnswerQueSuccess">./questionDetails.jsp</result>
+		    	<result name="AnswerQueFail">./questionDetails.jsp</result>
+		    	<result name="AdminPostsByType">./comquestions.jsp</result>
+			    <result name="AdminDelQueSuccess">./comquestions.jsp</result>
+			    <result name="AdminDelQueFail">./comquestions.jsp</result>
+			    <result name="AdminSearchByTitleSuccess">./comquestions.jsp</result>
+			    <result name="AdminSearchByTitleFail">./comquestions.jsp</result>
+		    </action>
+		    <action name="houseAction" class="com.struts.action.HouseServiceAction">
+		    	<result name="getTopFiveHouseSuccess">./index.jsp</result>
+		    	<result name="getTopFiveHouseFail">./index.jsp</result>
+		    	<result name="getAllHouseSuccess">./newhouse.jsp</result>
+		    	<result name="getAllHouseFail">./newhouse.jsp</result>
+		    	<result name="getAllComSuccess">./newcom.jsp</result>
+		    	<result name="getAllComFail">./newcom.jsp</result>
+		    	<result name="getAllLuxurySuccess">./newluxury.jsp</result>
+		    	<result name="getAllLuxuryFail">./newluxury.jsp</result>
+		    	<result name="getAllVillageSuccess">./newvillage.jsp</result>
+		    	<result name="getAllVillageFail">./newvillage.jsp</result>
+		    	<result name="getAllBussinessSuccess">./newbusiness.jsp</result>
+		    	<result name="getAllBussinessFail">./newbusiness.jsp</result>
+		    	<result name="getHouseDetailsSuccess">./singlehouse.jsp</result>
+		    	<result name="getHouseDetailsFail">./singlehouse.jsp</result>
+		    	<result name="getComDetailsSuccess">./singlecom.jsp</result>
+		    	<result name="getComDetailsFail">./singlecom.jsp</result>
+		    	<result name="RentHouseSuccess">./rent.jsp</result>
+		    	<result name="RentHouseFail">./rent.jsp</result>
+		    	<result name="getAllHouseByComIDSuccess">./newhouse.jsp</result>
+		    	<result name="getAllHouseByComIDFail">./newhouse.jsp</result>
+		    	<result name="getAllHouseByConditionSuccess">./newhouse.jsp</result>
+		    	<result name="getAllHouseByConditionFail">./newhouse.jsp</result>
+		    	<result name="getAllComByConditionSuccess">./newcom.jsp</result>
+		    	<result name="getAllComByConditionFail">./newcom.jsp</result>
+		    	<result name="getAllBussinesByConditionSuccess">./newbusiness.jsp</result>
+		    	<result name="getAllBussinesByConditionFail">./newbusiness.jsp</result>
+		    	<result name="getAllLuxuryByConditionSuccess">./newluxury.jsp</result>
+		    	<result name="getAllLuxuryByConditionFail">./newluxury.jsp</result>
+		    	<result name="getAllVillageByConditionSuccess">./newvillage.jsp</result>
+		    	<result name="getAllVillageByConditionFail">./newvillage.jsp</result>
+		    	<result name="judgeComBycomIDSuccess">./singlecom.jsp</result>
+		    	<result name="judgeComBycomIDFail">./singlecom.jsp</result>
+		    	<result name="rentHouseSuccess">./rent.jsp</result>
+		    	<result name="rentHouseFail">./rent.jsp</result>
+		    </action>
+	</package>
+</struts>

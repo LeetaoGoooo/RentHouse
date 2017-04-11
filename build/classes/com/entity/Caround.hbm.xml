@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.Caround" 
+    table="caround"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.entity.CaroundPK">
+        <key-property 
+            name="comId" 
+            column="comID" 
+            type="java.lang.Integer"
+            length="11"
+        />
+        <key-property 
+            name="aroundId" 
+            column="aroundID" 
+            type="java.lang.Integer"
+            length="11"
+        />
+    </composite-id>    
+
+    <property
+        name="mile"
+        type="float"
+        column="mile"
+        not-null="true"
+        length="8"
+    />
+    <property
+        name="content"
+        type="java.lang.String"
+        column="content"
+        length="65535"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to Com -->
+    <many-to-one
+        name="com"
+	    class="com.entity.Com"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="comID" />
+	</many-to-one>
+	
+    <!-- bi-directional many-to-one association to Around -->
+    <many-to-one
+        name="around"
+	    class="com.entity.Around"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="aroundID" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

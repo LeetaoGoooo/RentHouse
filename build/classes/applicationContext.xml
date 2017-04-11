@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xmlns:aop="http://www.springframework.org/schema/aop"  
+  xmlns:tx="http://www.springframework.org/schema/tx"  
+  xsi:schemaLocation="  
+	  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+	  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd  
+	  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 配置dataSource -->
+	  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/renthouse?characterEncoding=UTF-8" />
+	    <property name="username" value="root" />
+	    <property name="password" value="1234" />
+	  </bean>
+	
+	  <!-- spring与hibernate整合 
+		  spring来管理session的创建、打开和关闭
+	  -->
+	  <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+  		<!-- 依赖注入数据源，正式上下文定义的dataSource -->
+	    <property name="dataSource" ref="dataSource" />
+	    
+	    <property name="hibernateProperties">
+	    	<value>
+	            hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+	            hibernate.hbm2ddl.auto=update
+	            hibernate.show_sql=true
+	            hibernate.format_sql=true
+	            hibernate.cache.use_second_level_cache=true
+	            hibernate.cache.use_query_cache=false
+	            hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+	            hibernate.current_session_context_class=thread
+	        </value>
+	   </property>
+	   
+        <property name="annotatedClasses">
+            <list>
+                <value>com.entity.User</value>
+                <value>com.entity.Role</value>
+                <value>com.entity.Answer</value>
+                <value>com.entity.Around</value>
+                <value>com.entity.Aroundphoto</value>
+                <value>com.entity.Bus</value>
+                <value>com.entity.Caround</value>
+                <value>com.entity.CaroundPK</value>
+                <value>com.entity.Cbus</value>
+                <value>com.entity.Cjudge</value>
+                <value>com.entity.Collect</value>
+                <value>com.entity.Com</value>
+                <value>com.entity.Cphoto</value>
+                <value>com.entity.Hconfigure</value>
+                <value>com.entity.House</value>
+                <value>com.entity.History</value>
+                <value>com.entity.Hphoto</value>
+                <value>com.entity.Question</value>
+                <value>com.entity.Rent</value>
+            </list>
+        </property>
+        <property name="mappingResources">
+        	<list>
+        		<value>com/entity/User.hbm.xml</value>
+                <value>com/entity/Role.hbm.xml</value>
+                <value>com/entity/Answer.hbm.xml</value>
+                <value>com/entity/Around.hbm.xml</value>
+                <value>com/entity/Aroundphoto.hbm.xml</value>
+                <value>com/entity/Bus.hbm.xml</value>
+                <value>com/entity/Caround.hbm.xml</value>
+                <!-- <value>com/entity/CaroundPK.hbm.xml</value> -->
+                <value>com/entity/Cbus.hbm.xml</value>
+                <value>com/entity/Cjudge.hbm.xml</value>
+                <value>com/entity/Collect.hbm.xml</value>
+                <value>com/entity/Com.hbm.xml</value>
+                <value>com/entity/Cphoto.hbm.xml</value>
+                <value>com/entity/Hconfigure.hbm.xml</value>
+                <value>com/entity/House.hbm.xml</value>
+                <value>com/entity/History.hbm.xml</value>
+                <value>com/entity/Hphoto.hbm.xml</value>
+                <value>com/entity/Question.hbm.xml</value>
+                <value>com/entity/Rent.hbm.xml</value>
+        	</list>
+        </property>
+  	</bean>
+  	<!-- DAO -->
+  	<bean id="userDao" class="com.dao.impl.UserDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+  	</bean>
+	  	<bean id="questionDao" class="com.dao.impl.QuestionDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="answerDao" class="com.dao.impl.AnswerDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="houseDao" class="com.dao.impl.HouseDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="comDao" class="com.dao.impl.ComDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="rentDao" class="com.dao.impl.RentDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="hconfigDao" class="com.dao.impl.HconfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+  	<bean id="cjudgeDao" class="com.dao.impl.CjudgeDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	<!--Action -->  	
+  	<bean id="userAction" class="com.struts.action.UserServiceAction" scope="prototype">
+		 <property name="userDao" ref="userDao"></property>
+		 <property name="comDao" ref="comDao"></property>
+		 <property name="houseDao" ref="houseDao"></property>
+  	</bean>
+  	
+  	<bean id="questionAction" class="com.struts.action.PostServiceAction" scope="prototype">
+  		<property name="userDao" ref="userDao"></property>
+  		<property name="questionDao" ref="questionDao"></property>
+  		<property name="answerDao" ref="answerDao"></property>
+  	</bean>
+  	
+
+  	<bean id="houseAction" class="com.struts.action.HouseServiceAction" scope="prototype">
+  		<property name="houseDao" ref="houseDao"></property>
+  		<property name="comDao" ref="comDao"></property>
+  		<property name="rentDao" ref="rentDao"></property>
+  		<property name="hconfigDao" ref="hconfigDao"></property>
+  		<property name="cjudgeDao" ref="cjudgeDao"></property>
+  	</bean>
+</beans>

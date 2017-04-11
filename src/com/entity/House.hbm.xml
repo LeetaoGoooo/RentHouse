@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.House" 
+    table="house"
+    lazy="false"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="verify"
+        type="java.lang.Integer"
+        column="verify"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="renttype"
+        type="java.lang.String"
+        column="renttype"
+        not-null="true"
+        length="300"
+    />
+     <property
+        name="city"
+        type="java.lang.String"
+        column="city"
+        not-null="true"
+        length="20"
+    />
+   <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="true"
+        length="100"
+    />
+    <property
+        name="ask"
+        type="java.lang.String"
+        column="ask"
+        length="300"
+    />
+    
+    <property
+        name="age"
+        type="java.lang.Integer"
+        column="age"
+        length="11"
+    />
+    
+    <property
+        name="floor"
+        type="int"
+        column="floor"
+        not-null="true"
+        length="11"
+    />
+    <property
+        name="allfloor"
+        type="java.lang.Integer"
+        column="allfloor"
+        length="11"
+    />
+    <property
+        name="size"
+        type="java.lang.Integer"
+        column="size"
+        length="11"
+    />
+    <property
+        name="type"
+        type="java.lang.String"
+        column="type"
+        length="20"
+    />
+    <property
+        name="price"
+        type="float"
+        column="price"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="face"
+        type="java.lang.String"
+        column="face"
+        length="10"
+    />
+    <property
+        name="orderway"
+        type="java.lang.String"
+        column="orderway"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="visit"
+        type="java.lang.Integer"
+        column="visit"
+        length="11"
+    />
+    <property
+        name="buju"
+        type="java.lang.String"
+        column="buju"
+        length="40"
+    />
+    <property
+        name="decoration"
+        type="java.lang.String"
+        column="decoration"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="title"
+        type="java.lang.String"
+        column="title"
+        not-null="true"
+        length="80"
+    />
+    <property
+        name="content"
+        type="java.lang.String"
+        column="content"
+        length="65535"
+    />
+        <property
+        name="publictime"
+        type="java.sql.Date"
+        column="publictime"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Com -->
+    <many-to-one
+        name="com"
+        class="com.entity.Com"
+        not-null="true"
+    >
+        <column name="comID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to Hphoto -->
+
+    <set
+        name="hphotos"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="houseID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Hphoto"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to History -->
+
+    <set
+        name="histories"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="houseID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.History"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Rent -->
+
+    <set
+        name="rents"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="houseID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Rent"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Collect -->
+
+    <set
+        name="collects"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="houseID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Collect"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Hconfigure -->
+
+    <set
+        name="hconfigures"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="houseID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Hconfigure"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

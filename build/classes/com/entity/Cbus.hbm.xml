@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.Cbus" 
+    table="cbus"
+    lazy="false"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="mile"
+        type="float"
+        column="mile"
+        not-null="true"
+        length="8"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Com -->
+    <many-to-one
+        name="com"
+        class="com.entity.Com"
+        not-null="true"
+    >
+        <column name="comID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to Bus -->
+    <many-to-one
+        name="bus"
+        class="com.entity.Bus"
+        not-null="true"
+    >
+        <column name="busID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,517 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@page import="com.entity.User"  %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>首页</title>
+<link href="./css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<script src="./js/jquery.min.js"></script>
+<script src="./js/scripts.js"></script>
+<link href="./css/styles.css" rel="stylesheet">
+<link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Real Home Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="./js/responsiveslides.min.js"></script>
+   <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+</head>
+<body >
+	<div class="navigation">
+			<div class="container-fluid">
+				<nav class="pull">
+					<ul>
+						<li><a  href="houseAction!getAllTopFiveByVisit">首页</a></li>
+						<li><a  href="houseAction!getAllHouse">租房</a></li>
+                        <li><a  href="houseAction!getAllCom">小区</a></li>
+						<li><a  href="houseAction!getAllBussinessHouse">商铺写字楼</a></li>
+						<li><a  href="houseAction!getAllVillageHouse">别墅</a></li>
+						<li><a  href="houseAction!getAllLuxury">豪华套房</a></li>
+						<li><a  href="questionAction!getAllQuestion">问答</a></li>
+					</ul>
+				</nav>			
+			</div>
+		</div>
+
+<div class="header">
+	<div class="container">
+			<div class="logo">
+				<h1><a href="index.jsp">北上广</a></h1>
+			</div>
+		<div class="top-nav">
+			<ul class="right-icons">
+				<%
+					try{
+						User user = (User)session.getAttribute("userinfo");
+						String username = user.getName();
+						if(username != null)
+						{
+				%>
+				<li><a  href="userAction!showPersonalInfo?name=${session.userinfo.name}"><i class="glyphicon glyphicon-user"> </i>${session.userinfo.name}</a></li>
+				<%
+						}
+					}catch(Exception e)
+					{
+				%>
+					<li><a  href="login.jsp"><i class="glyphicon glyphicon-user"> </i>登录</a></li>
+					<li><a  href="register.jsp"><i class="glyphicon glyphicon-user"> </i>注册</a></li>
+				<%
+					}
+				%>
+				<li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
+				
+			</ul>
+			<div class="nav-icon">
+				<div class="hero fa-navicon fa-2x nav_slide_button" id="hero">
+						<a href="#"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
+					</div>	
+			</div>
+		<div class="clearfix"> </div>
+				<link href="./css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+				<script src="./js/jquery.magnific-popup.js" type="text/javascript"></script>
+				<div id="small-dialog" class="mfp-hide">
+				<div class="sap_tabs">	
+				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+						  <ul class="resp-tabs-list">
+						  	  <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>全部</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>小区</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>租房</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>问答</span></li>
+                              							  <div class="clearfix"></div>
+						  </ul>				  	 
+						  <div class="resp-tabs-container">
+                          
+						  		<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>全部</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+								 	<div class="facts">
+									  	<div class="login">
+											<input type="text" value="请输入关键字" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}">		
+									 		<input type="submit" value="">
+									 	</div>        
+							        </div>
+						  		</div>
+							     <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>小区</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+									<div class="facts">									
+										<div class="login">
+											<input type="text" value="请输入关键字" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}">		
+									 		<input type="submit" value="">
+									 	</div> 
+							        </div>	
+								 </div>								
+							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>租房</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+									 <div class="facts">
+										<div class="login">
+											<input type="text" value="请输入关键字" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}">		
+									 		<input type="submit" value="">
+									 	</div> 
+							         </div>	
+							    </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>问答</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+									 <div class="facts">
+										<div class="login">
+											<input type="text" value="请输入关键字" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '请输入关键字';}">		
+									 		<input type="submit" value="">
+									 	</div> 
+							         </div>	
+							    </div>
+					      </div>
+					 </div>
+					 <script src="./js/easyResponsiveTabs.js" type="text/javascript"></script>
+				    	<script type="text/javascript">
+						    $(document).ready(function () {
+						        $('#horizontalTab').easyResponsiveTabs({
+						            type: 'default', 
+						            width: 'auto', 
+						            fit: true   
+						        });
+						    });
+			  			 </script>	
+				</div>
+				</div>
+				 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script>
+					
+	
+		</div>
+		<div class="clearfix"> </div>
+		</div>	
+</div>
+	<div class=" header-right">
+    <div class="menu-right">
+		 <ul class="menu">
+			<li class="item1"><a href="#"> 菜单<i class="glyphicon glyphicon-menu-down"> </i> </a>
+			<ul class="cute">
+						<li class="subitem1"><a  href="houseAction!getAllTopFiveByVisit">首页</a></li>
+						<li class="subitem2"><a  href="houseAction!getAllHouse">租房</a></li>
+                        <li class="subitem1"> <a  href="houseAction!getAllCom">小区</a></li>
+						<li class="subitem2"><a  href="houseAction!getAllBussinessHouse">商铺写字楼</a></li>
+						<li class="subitem3"><a  href="houseAction!getAllVillageHouse">别墅</a></li>
+						<li class="subitem3"><a  href="houseAction!getAllLuxury">豪华套房</a></li>
+						<li class="subitem3"><a  href="questionAction!getAllQuestion">问答</a></li>		
+			</ul>
+		</ul>
+	</div>
+    <div class="clearfix"> </div>
+     <!--initiate accordion-->
+		<script type="text/javascript">
+			$(function() {
+			    var menu_ul = $('.menu > li > ul'),
+			           menu_a  = $('.menu > li > a');
+			    menu_ul.hide();
+			    menu_a.click(function(e) {
+			        e.preventDefault();
+			        if(!$(this).hasClass('active')) {
+			            menu_a.removeClass('active');
+			            menu_ul.filter(':visible').slideUp('normal');
+			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+			        } else {
+			            $(this).removeClass('active');
+			            $(this).next().stop(true,true).slideUp('normal');
+			        }
+			    });
+			
+			});
+		</script>   
+        
+        
+		<div class=" banner">
+			 <div class="slider">
+			    <div class="callbacks_container">
+			      <ul class="rslides" id="slider">		       
+					 <li>
+			          	 <div class="banner1">
+			           		<div class="caption">
+					          	<h3><span>北上广</span></h3>
+					          	<p>这里，你可以找到你的家。</p>
+			          		</div>
+			          	</div>
+			         </li>
+					 <li>
+			          	 <div class="banner2">
+			           		<div class="caption">
+					          	<h3><span>北上广</span></h3>
+					          	<p>这里，你可以找到你的家。</p>
+			          		</div>
+			          	</div>
+			         </li>
+			         <li>
+			          	 <div class="banner3">
+			           		<div class="caption">
+					          	<h3><span>北上广</span></h3>
+					          	<p>这里，你可以找到你的家。</p>
+			          		</div>
+			          	</div>
+			         </li>		
+			      </ul>
+			  </div>
+			</div>
+		</div>
+	</div>
+	 
+	<!--header-bottom-->
+	<div class="banner-bottom-top">
+			<div class="container">
+			<div class="bottom-header">
+				<div class="header-bottom">
+					<div class=" bottom-head">
+						<a href="houseAction!getAllHouse" >
+							<div class="buy-media">
+								<i class="buy"> </i>
+								<h6>租房</h6>
+							</div>
+						</a>
+					</div>
+					<div class=" bottom-head">
+						<a href="./rent.jsp">
+							<div class="buy-media">
+							<i class="rent"> </i>
+							<h6>出租</h6>
+							</div>
+						</a>
+					</div>
+					<div class=" bottom-head">
+						<a href="houseAction!getAllCom" >
+							<div class="buy-media">
+							<i class="sell"></i>
+							<h6>小区</h6>
+							</div>
+						</a>
+					</div>
+					<div class=" bottom-head">
+						<a href="houseAction!getAllBussinessHouse">
+							<div class="buy-media">
+							<i class="loan"> </i>
+							<h6>商铺写字楼</h6>
+							</div>
+						</a>
+					</div>
+					<div class=" bottom-head">
+						<a href="houseAction!getAllVillageHouse">
+							<div class="buy-media">
+							<i class="apart"> </i>
+							<h6>别墅</h6>
+							</div>
+						</a>
+					</div>
+                    <div class=" bottom-head">
+						<a href="houseAction!getAllLuxury">
+							<div class="buy-media">
+							<i class="pg"> </i>
+							<h6>豪华套房</h6>
+							</div>
+						</a>
+					</div>
+					<div class=" bottom-head">
+						<a href="questionAction!getAllQuestion">
+							<div class="buy-media">
+							<i class="deal"> </i>
+							<h6>问答</h6>
+							</div>
+						</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div class="content-grid">
+		<div class="container">
+			<h3><a style=" color:White;" href="houseAction!getAllHouse">热门房源</a></h3>
+				<s:iterator value="#session.HouseList" var="house" >
+					<div class="col-md-4 box_2">
+				     	 <a href="#" class="mask">
+				     	   	<img class="img-responsive zoom-img" src="./images/pc4.jpg" alt="">
+				     	   	<span class="four">${house.price}元</span>
+				     	 </a>
+				     	 <div class="most-1">
+				     	   	 <h5><a href="#">${house.address}</a></h5>
+				     	    	<a href="houseAction!getHouseDetailById?id=${house.id}"><p>${house.title}</p></a>
+				     	 </div>
+				 	</div>
+				</s:iterator>
+		 	<div class="clearfix"> </div>
+		</div>
+	</div>
+	
+	
+<div class="content">
+	<div class="content-grid">
+		<div class="container">
+		<form action = "indexcom" method = "post">
+			<h3><a style=" color:White;" href="houseAction!getAllCom">热门小区</a></h3>
+				<s:iterator value="#session.TopFiveCom" var="com" >
+					<div class="col-md-4 box_2">
+				     	 <a href="#" class="mask">
+				     	   	<img class="img-responsive zoom-img" src="./images/pc4.jpg" alt="">
+				     	   	<span class="four">${com.cost}元/m*m</span>
+				     	 </a>
+				     	   <div class="most-1">
+				     	   	 <h5><a href="#">${com.address}</a></h5>
+				     	    	<a href="houseAction!getComDetailsById?id=${com.id}"><p>${com.name}</p></a>
+				     	   </div>
+				   </div>					
+				</s:iterator>
+		 	<div class="clearfix"> </div>
+		 	</form>
+		</div>
+	</div>
+<!--features-->
+		<div class="content-middle">
+			<div class="container">
+				<div class="mid-content">
+					<h3>&nbsp; &nbsp;&nbsp;豪华套房</h3>
+					<p> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 据英国《每日邮报》报道，日前美国奢侈品杂志《精英旅游》发布2013年度世界101个最奢华酒店名单。其中，中国、新西兰、马尔代夫、纽约和洛杉矶等地方的酒店均榜上有名，其中纽约的皇宫酒店还位于榜首。</p>
+					<a class="hvr-sweep-to-right more-in" href="houseAction!getAllLuxury">更多了解</a>
+				</div>
+			</div>
+		</div>
+	<div class="project">
+		<div class="container">
+			<h3>热门排行榜</h3>
+				<div class="project-top">
+					<div class="col-md-3 project-grid">
+					<form action=" indexhotcom" method="post">
+						<div class="project-grid-top">
+							 <a href="#" class="mask"><img src="./images/ga3.jpg" class="img-responsive zoom-img" alt=""/></a>
+							 <div class="col-md1">
+								 <div class="col-md2">
+									 <div class="col-md3">
+									 	<span class="star"> 5</span>
+									 </div>
+									 <div class="col-md4">
+									 	<strong>小区排行榜</strong>
+									 	<small>前5名</small>
+									 </div>
+									 <div class="clearfix"> </div>
+								 </div>
+								 <s:iterator value="#session.TopFiveCom" var="com" >
+								 	<p>${com.name}</p>
+								 	<p>${com.cost}*${com.totalarea} 元</p>
+								 </s:iterator>
+								 <a href="houseAction!getAllCom" class="hvr-sweep-to-right more">查看更多</a>
+							 </div>
+						</div>
+						</form>
+					</div>
+					<div class="col-md-3 project-grid">
+					<form action="indexhothouse" method="post">
+						<div class="project-grid-top">
+							  <a href="#" class="mask"><img src="./images/ga1.jpg" class="img-responsive zoom-img" alt=""/></a>
+							 <div class="col-md1">
+								 <div class="col-md2">
+									 <div class="col-md3">
+									 	<span class="star"> 5</span>
+									 </div>
+									 <div class="col-md4">
+									 	<strong>房源排行榜</strong>
+									 	<small>前5名</small>
+									 </div>
+									 <div class="clearfix"> </div>
+								 </div>
+								 <s:iterator value="#session.HouseList" var="house" >
+								 	<p>${house.title}</p>
+								 	<p>${house.price}</p>
+								 </s:iterator>
+								 <a href="houseAction!getAllHouse" class="hvr-sweep-to-right more">查看更多</a>
+							 </div>
+						</div>
+						</form>
+					</div>
+					<div class="col-md-3 project-grid">
+					<form action = "indexhotbusiness" method="get">
+						<div class="project-grid-top">
+							  <a href="#" class="mask"><img src="./images/pi.jpg" class="img-responsive zoom-img" alt=""/></a>
+							 <div class="col-md1">
+								 <div class="col-md2">
+									 <div class="col-md3">
+									 	<span class="star"> 5</span>
+									 </div>
+									 <div class="col-md4">
+									 	<strong>商铺排行榜</strong>
+									 	<small>前5名</small>
+									 </div>
+									 <div class="clearfix"> </div>
+								 </div>
+								 <s:iterator value="#session.TopFiveBus" var="bussiness" >
+								 	<p>${bussiness.title}</p>
+								 	<p>${bussiness.price}</p>
+								 </s:iterator>
+								 <a href="houseAction!getAllBussinessHouse" class="hvr-sweep-to-right more">查看更多</a>
+							 </div>
+						</div>
+						</form>
+					</div>
+					<div class="col-md-3 project-grid">
+					<form action="indexstudy" method="post">
+						<div class="project-grid-top">
+							  <a href="#" class="mask"><img src="./images/pc5.jpg" class="img-responsive zoom-img" alt=""/></a>
+							 <div class="col-md1">
+								 <div class="col-md2">
+									 <div class="col-md3">
+									 	<span class="star"> 5</span>
+									 </div>
+									 <div class="col-md4">
+									 	<strong>学区房排行榜</strong>
+									 	<small>前5名</small>
+								   </div>
+									 <div class="clearfix"> </div>
+								 </div>
+								 <s:iterator value="#session.TopFiveStudy" var="study" >
+								 	<p>${study.title}</p>
+								 	<p>${study.price}</p>
+								 </s:iterator>
+								 <a href="houseAction!getAllStudyHouse" class="hvr-sweep-to-right more">查看更多</a>
+							 </div>
+						</div>
+						</form>
+					</div>
+					<div class="clearfix"> </div>
+				</div>				
+		</div>
+	</div>
+	</div>
+<!--footer-->
+<div class="footer">
+	<div class="container">
+		<div class="footer-top-at">
+			<div class="col-md-3 amet-sed">
+				<h4><a style=" color:White;" href="about.html">常见知识</a></h4>
+				<ul class="nav-bottom">
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">For Sale By Owner Blog</a></li>
+					<li><a href="#">Mobile</a></li>
+					
+				</ul>	
+			</div>
+			<div class="col-md-3 amet-sed ">
+				<h4><a style=" color:#FFFFFF;" href="#">装修设计</a></h4>
+					<ul class="nav-bottom">
+<!-- 						<li><a href="#">Real Estate Brokers</a></li> -->
+<!-- 						<li><a href="#">Business Development</a></li> -->
+<!-- 						<li><a href="#">Affiliate Programs</a></li> -->
+<!-- 						<li><a href="contact.html">Sitemap</a></li> -->
+<!-- 						<li><a href="career.html">Careers</a></li> -->
+<!-- 						<li><a href="feedback.html">Feedback</a></li>	 -->
+					</ul>	
+			</div>
+			<div class="col-md-3 amet-sed">
+				<h4><a style=" color:#FFFFFF;" href="#">房屋风水</a></h4>
+					<ul class="nav-bottom">
+<!-- 						<li><a href="#">Live Chat</a></li> -->
+<!-- 						<li><a href="faqs.html">Frequently Asked Questions</a></li> -->
+<!-- 						<li><a href="suggestion.html">Make a Suggestion</a></li> -->
+					</ul>	
+			</div>
+			<div class="col-md-3 amet-sed ">
+				<h4><a style=" color:#FFFFFF;" href="#">法律法规</a></h4>
+				   <ul class="nav-bottom">
+<!-- 						<li><a href="single.html">Residential Property</a></li> -->
+<!-- 						<li><a href="single.html">Commercial Property</a></li> -->
+<!-- 						<li><a href="login.html">Login</a></li> -->
+<!-- 						<li><a href="register.html">Register</a></li> -->
+<!-- 						<li><a href="typo.html">Short Codes</a></li>	 -->
+					</ul>	
+			</div>
+		<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="col-md-4 footer-logo">
+				<h2><a href="index.jsp">北上广</a></h2>
+			</div>
+			<div class="col-md-8 footer-class">
+				<p >联系方式：15538006260&nbsp;&nbsp;&nbsp;&nbsp;邮箱：2323518508@qq.com&nbsp;&nbsp;</p><p>Copyright &copy; 2016.www.beishangguang.com All rights reserved.</p>
+			</div>
+		<div class="clearfix"> </div>
+	 	</div>
+	</div>
+</div>
+</body>
+</html>

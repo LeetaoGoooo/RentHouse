@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.Around" 
+    table="around"
+    lazy="false"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="name"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="type"
+        type="java.lang.String"
+        column="type"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="note"
+        type="java.lang.String"
+        column="note"
+        length="65535"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to Caround -->
+
+    <set
+        name="carounds"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="aroundID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Caround"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Aroundphoto -->
+
+    <set
+        name="aroundphotos"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="aroundID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Aroundphoto"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

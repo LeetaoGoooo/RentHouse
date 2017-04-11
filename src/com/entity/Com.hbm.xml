@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.Com" 
+    table="com"
+    lazy="false"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="name"
+        type="java.lang.String"
+        column="name"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="city"
+        type="java.lang.String"
+        column="city"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="address"
+        type="java.lang.String"
+        column="address"
+        not-null="true"
+        length="255"
+    />
+<!--     <property -->
+<!--         name="starttime" -->
+<!--         type="java.sql.Date" -->
+<!--         column="starttime" -->
+<!--         length="10" -->
+<!--     /> -->
+    <property
+        name="car"
+        type="java.lang.Integer"
+        column="car"
+        length="11"
+    />
+    <property
+        name="traffic"
+        type="java.lang.String"
+        column="traffic"
+        length="10"
+    />
+    <property
+        name="publi"
+        type="java.lang.String"
+        column="publi"
+        length="10"
+    />
+    <property
+        name="green"
+        type="java.lang.String"
+        column="green"
+        length="10"
+    />
+    <property
+        name="study"
+        type="java.lang.Byte"
+        column="study"
+        length="1"
+    />
+    <property
+        name="developer"
+        type="java.lang.String"
+        column="developer"
+        length="50"
+    />
+    <property
+        name="totalarea"
+        type="java.lang.Float"
+        column="totalarea"
+        length="8"
+    />
+    <property
+        name="cost"
+        type="java.lang.Float"
+        column="cost"
+        length="5"
+    />
+    <property
+        name="note"
+        type="java.lang.String"
+        column="note"
+        length="65535"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to Cbus -->
+
+    <set
+        name="cbuses"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="comID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Cbus"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Cphoto -->
+
+    <set
+        name="cphotos"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="comID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Cphoto"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Cjudge -->
+
+    <set
+        name="cjudges"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="comID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Cjudge"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Caround -->
+
+    <set
+        name="carounds"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="comID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Caround"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to House -->
+
+    <set
+        name="houses"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="comID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.House"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

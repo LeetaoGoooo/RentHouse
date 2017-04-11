@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.entity.User" 
+    table="user"
+    lazy="false"
+    
+>
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="sex"
+        type="java.lang.Integer"
+        column="sex"
+        length="11"
+    />
+    <property
+        name="name"
+        type="java.lang.String"
+        column="name"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="account"
+        type="java.lang.String"
+        column="account"
+        not-null="true"
+        length="30"
+    />
+    <property
+        name="photo"
+        type="java.lang.String"
+        column="photo"
+        length="65535"
+    />
+    <property
+        name="email"
+        type="java.lang.String"
+        column="email"
+        length="30"
+    />
+    <property
+        name="password"
+        type="java.lang.String"
+        column="password"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="phone"
+        type="java.lang.String"
+        column="phone"
+        length="11"
+    />
+    <property
+        name="level"
+        type="int"
+        column="level"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="note"
+        type="java.lang.String"
+        column="note"
+        length="65535"
+    />
+     <many-to-one
+        name="role"
+        class="com.entity.Role"
+        not-null="true"
+    >
+        <column name="rolesID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to Answer -->
+
+    <set
+        name="answers"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Answer"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Question -->
+
+    <set
+        name="questions"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Question"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Cjudge -->
+
+    <set
+        name="cjudges"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Cjudge"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to History -->
+
+    <set
+        name="histories"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.History"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Rent -->
+
+    <set
+        name="rents"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Rent"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to Collect -->
+
+    <set
+        name="collects"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="userID" />
+        </key>
+        
+        <one-to-many 
+            class="com.entity.Collect"
+        />
+    </set>
+</class>
+</hibernate-mapping>

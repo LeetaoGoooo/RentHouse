@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.entity.Answer" 
+    table="answer"
+    lazy="false"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+		    <meta attribute="field-description" inherit="false">
+		       auto_increment
+		    </meta>
+    
+        <generator class="native" />
+    </id>
+
+    <property
+        name="time"
+        type="java.sql.Timestamp"
+        column="time"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="content"
+        type="java.lang.String"
+        column="content"
+        not-null="true"
+        length="65535"
+    />
+    <property
+        name="note"
+        type="java.lang.String"
+        column="note"
+        length="65535"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Question -->
+    <many-to-one
+        name="question"
+        class="com.entity.Question"
+        not-null="true"
+    >
+        <column name="qID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to User -->
+    <many-to-one
+        name="user"
+        class="com.entity.User"
+        not-null="true"
+    >
+        <column name="userID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>
